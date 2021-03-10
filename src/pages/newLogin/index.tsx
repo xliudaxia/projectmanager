@@ -16,7 +16,7 @@ class Index extends Component {
   login = (values: any) => {
     const { dispatch, login1 } = this.props;
     if (login1.status === "error") {
-      console.log('拿到失败消息')
+      console.log('拿到失败消息!')
     }
     dispatch({
       type: "login1/login",

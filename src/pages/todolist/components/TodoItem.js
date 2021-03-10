@@ -14,11 +14,11 @@ class TodoItem extends Component {
   }
 
   render () {
-    let {content, isComplete, id} = this.props
+    let { content, isComplete, id } = this.props
     return (
-      <div className="item-container" onDoubleClick={() => this.handleChangeItem(id)} style={{cursor: 'pointer'}}>
+      <div className="item-container" onDoubleClick={() => this.handleChangeItem(id)} style={{ cursor: 'pointer' }}>
         <Text delete={isComplete}>{content}</Text>
-        <Button type="primary" icon="delete" onClick={() => this.handleDeleteItem(id)}></Button>
+        <Button type="primary" icon="delete" onClick={() => this.handleDeleteItem(id)}> </Button>
       </div>
     )
   }

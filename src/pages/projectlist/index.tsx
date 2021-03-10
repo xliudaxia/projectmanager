@@ -5,7 +5,7 @@ class projectlist extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: "张三"
+      name: "张三 "
     }
   }
   render() {

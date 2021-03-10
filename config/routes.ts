@@ -15,7 +15,7 @@
           {
             name: 'newlogin',
             path: '/user/newlogin',
-            component: './newLogin',
+            component: './NewLogin',
           },
         ],
       },
@@ -42,13 +42,13 @@
                 path: '/todolist',
                 name: 'todolist',
                 icon: 'smile',
-                component: './todolist',
+                component: './TodoList',
               },
               {
                 path: '/projectlist',
                 name: 'projectlist',
                 icon: 'smile',
-                component: './projectlist',
+                component: './ProjectList',
               },
               {
                 path: '/admin',
