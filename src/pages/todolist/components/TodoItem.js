@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import { Typography, Button } from 'antd';
-import './TodoItem.less'
+import './TodoItem.less';
 
 const { Text } = Typography;
 
 class TodoItem extends Component {
-  handleDeleteItem (id) {
-    this.props.deleteItem(id)
+  handleDeleteItem(id) {
+    this.props.deleteItem(id);
   }
 
-  handleChangeItem (id) {
-    this.props.changeItem(id)
+  handleChangeItem(id) {
+    this.props.changeItem(id);
   }
 
-  render () {
-    let { content, isComplete, id } = this.props
+  render() {
+    const { content, isComplete, id } = this.props;
     return (
-      <div className="item-container" onDoubleClick={() => this.handleChangeItem(id)} style={{ cursor: 'pointer' }}>
+      <div
+        className="item-container"
+        onDoubleClick={() => this.handleChangeItem(id)}
+        style={{ cursor: 'pointer' }}
+      >
         <Text delete={isComplete}>{content}</Text>
-        <Button type="primary" icon="delete" onClick={() => this.handleDeleteItem(id)}> </Button>
+        <Button type="primary" icon="delete" onClick={() => this.handleDeleteItem(id)}>
+          {' '}
+        </Button>
       </div>
-    )
+    );
   }
 }
 

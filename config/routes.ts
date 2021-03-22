@@ -40,13 +40,13 @@
               },
               {
                 path: '/todolist',
-                name: 'todolist',
+                name: 'todo-list',
                 icon: 'smile',
                 component: './TodoList',
               },
               {
                 path: '/projectlist',
-                name: 'projectlist',
+                name: 'project-list',
                 icon: 'smile',
                 component: './ProjectList',
               },

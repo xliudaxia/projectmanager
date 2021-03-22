@@ -1,8 +1,6 @@
 import { fakeAccountLogin } from './service';
-import { Effect, history, Reducer } from 'umi';
+import { history } from 'umi';
 import { parse } from 'qs';
-
-
 
 export function getPageQuery() {
   return parse(window.location.href.split('?')[1]);
@@ -25,18 +23,17 @@ export function setAuthority(authority: string | string[]) {
 }
 
 const Model = {
-  namespace:"login1",
-  state:{
-  },
-  effects:{
-    *login({ payload,callback },{ call,put }){
-      const response =  yield call(fakeAccountLogin,payload)
-      console.log(response)
+  namespace: 'login1',
+  state: {},
+  effects: {
+    *login({ payload, callback }, { call, put }) {
+      const response = yield call(fakeAccountLogin, payload);
+      console.log(response);
       yield put({
-        type:"loginInfo",
-        payload:response
-      })
-      if(callback){
+        type: 'loginInfo',
+        payload: response,
+      });
+      if (callback) {
         callback(response);
       }
       // Login successfully
@@ -58,22 +55,19 @@ const Model = {
         }
         history.replace(redirect || '/');
       }
-    }
-
+    },
   },
-  reducers:{
-    loginInfo(state,{payload}){
+  reducers: {
+    loginInfo(state, { payload }) {
       // console.log('reduce接收内容', state,payload)
       setAuthority(payload.currentAuthority);
       return {
         ...state,
         status: payload.status,
         type: payload.type,
-        message:payload.message,
+        message: payload.message,
       };
-    }
-
-  }
-
+    },
+  },
 };
-export default Model
+export default Model;

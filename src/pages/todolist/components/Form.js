@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import { Input } from 'antd';
 
-const Search = Input.Search;
+const { Search } = Input;
 
 class Form extends Component {
-
-  handeChange (value) {
-    this.props.searchItem(value)
+  handeChange(value) {
+    this.props.searchItem(value);
   }
 
-  render () {
+  render() {
     return (
       <Search
         placeholder="请输入搜索内容"
-        style={{marginBottom: '8px'}}
-        onSearch={value => this.handeChange(value)}
+        style={{ marginBottom: '8px' }}
+        onSearch={(value) => this.handeChange(value)}
         enterButton
       />
-    )
+    );
   }
 }
 

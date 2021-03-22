@@ -4,50 +4,54 @@ import { Input } from 'antd';
 
 class Footer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isAdd: false,
-      addContent: ''
-    }
+      addContent: '',
+    };
   }
 
-  handleClick () {
+  handleClick() {
     this.setState({
-      isAdd: true
-    })
+      isAdd: true,
+    });
   }
 
-  handleChange (e) {
+  handleChange(e) {
     this.setState({
-      addContent: e.target.value
-    })
+      addContent: e.target.value,
+    });
   }
 
-  handleConfirm () {
-    if(!this.state.addContent) return
-    let item = {
+  handleConfirm() {
+    if (!this.state.addContent) return;
+    const item = {
       id: new Date(),
       content: this.state.addContent,
-      isComplete: false
-    }
-    this.props.addItem(item)
+      isComplete: false,
+    };
+    this.props.addItem(item);
     this.setState({
-      isAdd: false
-    })
+      isAdd: false,
+    });
   }
 
-  render () {
-    let addBtn = <Button type="primary" onClick={this.handleClick.bind(this)}>新增</Button>
-    let addComponent = <div style={{display: 'flex'}}>
-                        <Input onChange={e => this.handleChange(e)} style={{marginRight: '10px'}}/>
-                        <Button type="primary" onClick={this.handleConfirm.bind(this)}>确认</Button>
-                      </div>
-    let component = this.state.isAdd ? addComponent : addBtn
-    return (
-      <div style={{marginTop: '10px'}}>
-        {component}
+  render() {
+    const addBtn = (
+      <Button type="primary" onClick={this.handleClick.bind(this)}>
+        新增
+      </Button>
+    );
+    const addComponent = (
+      <div style={{ display: 'flex' }}>
+        <Input onChange={(e) => this.handleChange(e)} style={{ marginRight: '10px' }} />
+        <Button type="primary" onClick={this.handleConfirm.bind(this)}>
+          确认
+        </Button>
       </div>
-    )
+    );
+    const component = this.state.isAdd ? addComponent : addBtn;
+    return <div style={{ marginTop: '10px' }}>{component}</div>;
   }
 }
 
