@@ -51,6 +51,12 @@
                 component: './ProjectList',
               },
               {
+                path: '/dashboard',
+                name: 'dashboard',
+                icon: 'smile',
+                component: './Dashboard',
+              },
+              {
                 path: '/admin',
                 name: 'admin',
                 icon: 'crown',
@@ -63,7 +69,7 @@
                     icon: 'smile',
                     component: './Welcome',
                     authority: ['admin'],
-                  },
+                  }
                 ],
               },
               {
