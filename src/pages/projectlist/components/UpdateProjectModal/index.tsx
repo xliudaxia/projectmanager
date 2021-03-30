@@ -11,10 +11,15 @@ interface Values {
   prjectAdmin?: string;
   projectStatus?: string;
 }
+interface ConfigList {
+  projectstatus: string;
+  projectname: string;
+  projectdescription: string;
+}
 
 interface CollectionCreateFormProps {
   visible: boolean;
-  configList?: Values;
+  configList?: ConfigList;
   onCreate: (values: Values) => void;
   onCancel: () => void;
   dispatch: Dispatch;
@@ -22,9 +27,11 @@ interface CollectionCreateFormProps {
 }
 
 function mapStateToProps(state) {
+  console.log(state.projectlist.currentProjectInfo, '更新组件');
   const mystate = state;
+  const configList = state.projectlist.currentProjectInfo;
   const loading = state.loading.effects['projectlist/updateProjectInfo'];
-  return { mystate, loading };
+  return { mystate, loading, configList };
 }
 
 const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
@@ -34,6 +41,7 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
   configList,
   dispatch,
 }) => {
+  console.log('查看config', configList);
   const [form] = Form.useForm();
   const dispatchData = (allFields: any[]) => {
     // 将更新后的数据同步到dva
@@ -45,10 +53,6 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
     dispatch({
       type: 'projectlist/updateProjectInfo',
       payload: tempFieldStruct,
-    });
-    dispatch({
-      type: 'projectlist/UpdateProject',
-      payload: { a: 1 },
     });
   };
   return (
@@ -73,9 +77,9 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
           dispatchData(allFields);
         }}
         initialValues={{
-          modifier: configList?.modifier,
-          title: configList?.title,
-          description: configList?.description,
+          modifier: configList?.projectstatus,
+          title: configList?.projectname,
+          description: configList?.projectdescription,
         }}
       >
         <Form.Item

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Card, Col, Row, Tooltip, Modal } from 'antd';
+import { Card, Col, Row, Tooltip, Modal, Input, Space } from 'antd';
 import { connect } from 'dva';
 import projbackground from '../../assets/images/background.jpg';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
@@ -9,6 +9,7 @@ import AddProjectModal from './components/AddProjectModal';
 import UpdateProjectModal from './components/UpdateProjectModal';
 import styles from './index.less';
 
+const { Search } = Input;
 const { Meta } = Card;
 
 function mapStateToProps(state) {
@@ -47,8 +48,12 @@ const ProjectList: React.FC<{}> = (props) => {
       },
     });
   };
+<<<<<<< HEAD
   const editItem = (values) => {
     console.log('执行了any方法', values)
+=======
+  const editItem = (values: any) => {
+>>>>>>> 7156a9752e4f15f97d5ee8b56cb8ea1e009b0a3a
     dispatch({
       type: 'projectlist/loadProjectInfo',
       payload: values,
@@ -66,7 +71,15 @@ const ProjectList: React.FC<{}> = (props) => {
     <PageHeaderWrapper>
       <div className={styles.siteCardWrapper}>
         <Card bordered={false}>
-          <AddProjectModal></AddProjectModal>
+          <Space>
+            <AddProjectModal />
+            <Search
+              style={{ marginLeft: '500px', paddingBottom: '15px' }}
+              placeholder="请输入关键词"
+              allowClear
+              enterButton="搜索"
+            />
+          </Space>
           <UpdateProjectModal
             visible={updateModalvisible}
             onCreate={onCreate}
@@ -74,7 +87,10 @@ const ProjectList: React.FC<{}> = (props) => {
               setUpdateModalvisible(false);
             }}
           />
-          <Row style={{ display: 'flex', margin: '0 auto', width: '100%' }} gutter={16}>
+          <Row
+            style={{ display: 'flex', margin: '0 auto', width: '100%', marginTop: '15px' }}
+            gutter={16}
+          >
             {(projectlist || []).map((item) => (
               <Col span={6}>
                 <Card

@@ -41,6 +41,7 @@ export default {
       };
     },
     loadProjectInfo(state, action) {
+      console.log('执行了', action.payload);
       return {
         ...state,
         currentProjectInfo: action.payload,
