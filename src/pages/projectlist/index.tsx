@@ -48,12 +48,7 @@ const ProjectList: React.FC<{}> = (props) => {
       },
     });
   };
-<<<<<<< HEAD
-  const editItem = (values) => {
-    console.log('执行了any方法', values)
-=======
   const editItem = (values: any) => {
->>>>>>> 7156a9752e4f15f97d5ee8b56cb8ea1e009b0a3a
     dispatch({
       type: 'projectlist/loadProjectInfo',
       payload: values,
