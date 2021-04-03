@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button, Modal, Form, Input, Radio, message } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { AddProjectItem } from '../../service';
+import type { Dispatch } from 'umi';
 
 interface Values {
   title: string;
@@ -73,7 +74,7 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
   );
 };
 
-const CollectionsPage = () => {
+const CollectionsPage = ({getProjectList}) => {
   const [visible, setVisible] = useState(false);
 
   const onCreate = async (values) => {
@@ -90,6 +91,7 @@ const CollectionsPage = () => {
     if (success.status === 200) {
       message.success('添加成功');
       setVisible(false);
+      getProjectList();
     } else {
       message.error('添加失败请重试！');
     }
@@ -117,10 +119,10 @@ const CollectionsPage = () => {
   );
 };
 
-export default () => (
+export default ({getProjectList}) => (
   <div className={styles.container}>
     <div id="components-form-demo-form-in-modal">
-      <CollectionsPage />
+      <CollectionsPage getProjectList={getProjectList} />
     </div>
   </div>
 );

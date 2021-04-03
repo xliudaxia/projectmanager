@@ -47,8 +47,21 @@
               {
                 path: '/projectlist',
                 name: 'project-list',
-                icon: 'smile',
-                component: './ProjectList',
+                icon: 'dashboard',
+                routes: [
+                  {
+                    path: '/projectlist/main',
+                    name: 'project-main',
+                    icon: 'smile',
+                    component: './ProjectList',
+                  },
+                  {
+                    path: '/projectlist/projectdetail',
+                    name: 'project-detail',
+                    icon: 'smile',
+                    component: './ProjectDetail',
+                  }
+                ],
               },
               {
                 path: '/dashboard',

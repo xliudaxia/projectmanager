@@ -28,12 +28,22 @@ const ProjectList: React.FC<{}> = (props) => {
       callback: (response) => {
         console.log('执行结果', response);
         if (response.status === 'error') {
-          console.log('刷新验证码');
+          console.log('获取项目列表出错');
         }
       },
     });
     setCount(1);
   }, [count]);
+  const getProjectList=()=>{
+    dispatch({
+      type: 'projectlist/fetch',
+      callback: (response) => {
+        if (response.status === 'error') {
+          console.log('获取项目列表出错');
+        }
+      },
+    });
+  }
   const deleteItem = (id: string) => {
     Modal.confirm({
       title: '删除任务',
@@ -45,6 +55,7 @@ const ProjectList: React.FC<{}> = (props) => {
           type: 'projectlist/delProjectItem',
           payload: { id },
         });
+        setCount(2);
       },
     });
   };
@@ -55,21 +66,31 @@ const ProjectList: React.FC<{}> = (props) => {
     });
     setUpdateModalvisible(true);
   };
+
+  const onSearch=(value:string)=>{
+    dispatch({
+      type: 'projectlist/queryProjectList',
+      payload: value,
+    });
+  }
   const onCreate = () => {
     dispatch({
       type: 'projectlist/updateProjectItem',
       payload: props.currentProjectInfo,
     });
+    setUpdateModalvisible(false);
+    setCount(3);
   };
 
   return (
     <PageHeaderWrapper>
       <div className={styles.siteCardWrapper}>
         <Card bordered={false}>
-          <Space>
-            <AddProjectModal />
+          <Space style={{marginBottom:"20px",width:"100%",position:"relative"}}>
+            <AddProjectModal getProjectList={getProjectList}  />
             <Search
-              style={{ marginLeft: '500px', paddingBottom: '15px' }}
+            onSearch={onSearch}
+              style={{ position:"absolute",right:"0", top:"0",width:"300px"}}
               placeholder="请输入关键词"
               allowClear
               enterButton="搜索"

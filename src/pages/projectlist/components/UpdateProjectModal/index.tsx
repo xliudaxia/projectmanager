@@ -41,7 +41,6 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
   configList,
   dispatch,
 }) => {
-  console.log('查看config', configList);
   const [form] = Form.useForm();
   const dispatchData = (allFields: any[]) => {
     // 将更新后的数据同步到dva

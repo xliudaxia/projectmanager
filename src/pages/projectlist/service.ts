@@ -17,8 +17,14 @@ export type UpdateProjectItemParamsType = {
   projectadmin: string;
 };
 
-export async function getProjectList() {
+
+
+export async function GetProjectList() {
   return request(`/api/v1/projectlist`);
+}
+
+export async function QueryProjectList(keyword:string) {
+  return request(`/api/v1/queryproject?keyword=${keyword}`);
 }
 
 export async function AddProjectItem(params: AddProjectItemParamsType) {
