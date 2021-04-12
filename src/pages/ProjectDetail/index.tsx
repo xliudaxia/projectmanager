@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Result, Avatar, Tag, Input } from 'antd';
+import { Button, Avatar, Tag, Input, Descriptions, Card, Steps } from 'antd';
 import { CrownOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons';
 import ProLayout, { PageContainer } from '@ant-design/pro-layout';
+import CommnetCenter from './components/CommentCenter'
 
+const { Step } = Steps;
 const defaultProps = {
   routes: [
     {
@@ -21,10 +23,11 @@ const defaultProps = {
       path: '/admin/sub-page3',
       name: '文件仓库',
       icon: <SmileOutlined />,
-      component: './Welcome',
+      component: '../Welcome',
     },
   ],
 };
+
 
 export default () => {
   const [pathname, setPathname] = useState('/welcome');
@@ -56,7 +59,7 @@ export default () => {
       >
         <PageContainer
           onBack={() => null}
-          tags={<Tag color="blue">状态一</Tag>}
+          tags={<Tag color="blue">进行中</Tag>}
           header={{
             style: {
               padding: '4px 16px',
@@ -78,27 +81,38 @@ export default () => {
                 width: 240,
               }}
             />,
-            <Button key="3">操作一</Button>,
-            <Button key="2" type="primary">
-              操作一
+            <Button key="1" type="primary">
+              搜索
             </Button>,
           ]}
         >
           <div
             style={{
-              height: '120vh',
+              minHeight: '120vh',
             }}
           >
-            <Result
-              status="404"
-              style={{
-                height: '100%',
-                background: '#fff',
-              }}
-              title="Hello World"
-              subTitle="Sorry, you are not authorized to access this page."
-              extra={<Button type="primary">Back Home</Button>}
-            />
+            <Card bordered={false} style={{ background: '#fff' }}>
+              <Descriptions title="光大科技+信托存证项目" style={{ paddingTop: 10 }}>
+                <Descriptions.Item label="创建人">张宏源</Descriptions.Item>
+                <Descriptions.Item label="状态">进行中</Descriptions.Item>
+                <Descriptions.Item label="创建时间">2021-04-06</Descriptions.Item>
+                <Descriptions.Item label="项目介绍">这是一段用于演示的项目介绍，欢迎您的体验！</Descriptions.Item>
+              </Descriptions>
+            </Card>
+            <Card title="项目执行流程" style={{ marginBottom: 12, height: "100%", padding: "0 24px 0 24px" }} bordered={false} >
+              <Steps
+                direction='horizontal'
+              >
+                <Step title="商务立项" />
+                <Step title="实施立项" />
+                <Step title="大额支出" />
+                <Step title="项目招采" />
+                <Step title="合同签订" />
+              </Steps>
+            </Card>
+            <Card title="评论" style={{ marginBottom: 12, height: "100%", padding: "24px" }} bordered={false} >
+              <CommnetCenter />
+            </Card>
           </div>
         </PageContainer>
       </ProLayout>
