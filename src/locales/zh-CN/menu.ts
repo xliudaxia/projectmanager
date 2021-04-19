@@ -15,6 +15,7 @@ export default {
   'menu.exception.500': '500',
   'menu.form': '表单页',
   'menu.project-list': '项目列表',
+  'menu.project-list.phone-book': '电话簿',
   'menu.project-list.project-detail': '项目详情',
   'menu.project-list.project-main': '项目列表',
   'menu.dashboard': '驾驶舱',

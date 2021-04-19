@@ -60,7 +60,13 @@
                     name: 'project-detail',
                     icon: 'smile',
                     component: './ProjectDetail',
-                  }
+                  },
+                  {
+                    path: '/projectlist/phonebook',
+                    name: 'phone-book',
+                    icon: 'smile',
+                    component: './PhoneBook',
+                  },
                 ],
               },
               {
