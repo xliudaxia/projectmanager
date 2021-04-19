@@ -1,10 +1,11 @@
 import { PageContainer } from '@ant-design/pro-layout';
-import React, { useState, useEffect,useRef  } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable, { TableDropdown } from '@ant-design/pro-table';
 import { PlusOutlined, EllipsisOutlined } from '@ant-design/icons';
 import request from 'umi-request';
-import {  Tag, Space, Menu,Button,Dropdown } from 'antd';
+import { Tag, Space, Menu, Button, Dropdown } from 'antd';
+import AddModal from './components/AddModal'
 import styles from './index.less';
 
 
@@ -18,9 +19,9 @@ type GithubIssueItem = {
   label: string;
   qqnum: number;
   email: string;
-  address:string;
-  extra:string;
-  status:boolean;
+  address: string;
+  extra: string;
+  status: boolean;
 };
 
 
@@ -143,52 +144,53 @@ export default () => {
     }, 3000);
   }, []);
   return (
-    <PageContainer  className={styles.main}>
+    <PageContainer className={styles.main}>
       <div>
-      <ProTable<GithubIssueItem>
-      columns={columns}
-      actionRef={actionRef}
-      request={async (params = {}) =>
-        request<{
-          data: GithubIssueItem[];
-        }>('/api/v1/phone', {
-          params,
-        })
-      }
-      editable={{
-        type: 'multiple',
-      }}
-      rowKey="id"
-      search={{
-        labelWidth: 'auto',
-      }}
-      form={{
-        // 由于配置了 transform，提交的参与与定义的不同这里需要转化一下
-        syncToUrl: (values, type) => {
-          if (type === 'get') {
-            return {
-              ...values,
-              created_at: [values.startTime, values.endTime],
-            };
+        <AddModal></AddModal>
+        <ProTable<GithubIssueItem>
+          columns={columns}
+          actionRef={actionRef}
+          request={async (params = {}) =>
+            request<{
+              data: GithubIssueItem[];
+            }>('/api/v1/phone', {
+              params,
+            })
           }
-          return values;
-        },
-      }}
-      pagination={{
-        pageSize: 5,
-      }}
-      dateFormatter="string"
-      toolBarRender={() => [
-        <Button key="button" icon={<PlusOutlined />} type="primary">
-          新建
-        </Button>,
-        <Dropdown key="menu" overlay={menu}>
-          <Button>
-            <EllipsisOutlined />
-          </Button>
-        </Dropdown>,
-      ]}
-    />
+          editable={{
+            type: 'multiple',
+          }}
+          rowKey="id"
+          search={{
+            labelWidth: 'auto',
+          }}
+          form={{
+            // 由于配置了 transform，提交的参与与定义的不同这里需要转化一下
+            syncToUrl: (values, type) => {
+              if (type === 'get') {
+                return {
+                  ...values,
+                  created_at: [values.startTime, values.endTime],
+                };
+              }
+              return values;
+            },
+          }}
+          pagination={{
+            pageSize: 5,
+          }}
+          dateFormatter="string"
+          toolBarRender={() => [
+            <Button key="button" icon={<PlusOutlined />} type="primary">
+              新建
+            </Button>,
+            <Dropdown key="menu" overlay={menu}>
+              <Button>
+                <EllipsisOutlined />
+              </Button>
+            </Dropdown>,
+          ]}
+        />
       </div>
     </PageContainer>
   );
