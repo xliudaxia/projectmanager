@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import { Modal, Button, Form, Input, Select, message } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-const {Option} = Select;
-
+import React from 'react';
+import { Modal,  Form, Input, message } from 'antd';
 
 
 interface Values {
@@ -12,40 +9,31 @@ interface Values {
   qqNum: string;
 }
 
+interface PhoneBookData {
+  name: string | number | (string | number)[];
+  value?: any;
+  touched?: boolean;
+  validating?: boolean;
+  errors?: string[];
+}
+
 interface CollectionCreateFormProps {
   visible: boolean;
   onCreate: (values: Values) => void;
   onCancel: () => void;
+  phoneItem: PhoneBookData[];
+  setPhoneItem: any;
+  doRefreshTable:()=>void;
 }
-
-
-interface contactPerson {
-  id?: number;
-  name: string;
-  sex?: string;
-  age?: string;
-  wechat?: string;
-  phoneNum: string;
-  qqNum?: string;
-  email?: string;
-  address?: string;
-  label?: string;
-  extraContent?: string;
-}
-
-
-
 
 const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
   visible,
   onCreate,
   onCancel,
+  phoneItem,
+  setPhoneItem
 }) => {
   const [form] = Form.useForm();
-
-
-
-
   return (
     <Modal
       visible={visible}
@@ -65,12 +53,22 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
           });
       }}
     >
-      {/* initialValues={{ modifier: "public" }} */}
       <Form
         form={form}
         layout="horizontal"
         name="form_in_modal"
+        fields={phoneItem}
+        onFieldsChange={(_, allFields) => {
+          setPhoneItem(allFields);
+        }}
       >
+        <Form.Item
+          name="ID"
+          label="ID"
+          hidden={true}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item
           name="name"
           label="姓名"
@@ -83,13 +81,14 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
         >
           <Input />
         </Form.Item>
-        <Form.Item name="phoneNum" label="电话" rules={[
+        <Form.Item name="phone" label="电话" 
+        rules={[
           {
             required: true,
-            message: "请输入电话,且必须为数字",
+            message: "请输入电话",
           },
         ]}>
-          <Input   min={7} max={13}  type="number" />
+          <Input type="textarea" />
         </Form.Item>
 
         <Form.Item
@@ -99,7 +98,7 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
           <Input />
         </Form.Item>
         <Form.Item
-          name="qqNum"
+          name="qqnum"
           label="QQ号"
         >
           <Input />
@@ -109,46 +108,38 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
   );
 };
 
-export default ({doRefreshTable}) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
+export default ({ phoneItem, setPhoneItem, isModalVisible, setIsModalVisible,doRefreshTable }: { phoneItem: PhoneBookData[], setPhoneItem: any, isModalVisible: boolean, setIsModalVisible: any,doRefreshTable:()=>void }) => {
 
   const onCreate = (values) => {
+    const  ID= phoneItem[0].value
     const body = {
-      name:values.name,
-      phone:Number(values.phoneNum),
-      qqnum:Number(values.qqNum),
-      wechat:values.wechat
+      name: phoneItem[1].value,
+      phone: Number(phoneItem[2].value),
+      wechat: phoneItem[3].value,
+      qqnum: Number(phoneItem[4].value)
     }
-
     let opts = {
-      method: "POST",
-      body:JSON.stringify(body)
+      method: "PUT",
+      body: JSON.stringify(body)
     }
-    fetch('/api/v1/phone', opts).then(response => response.json()).then((response => {
-      if(response.status === 200){
+    fetch(`/api/v1/phone/${ID}`, opts).then(response => response.json()).then((response => {
+      if (response.code === 200) {
         message.info(response.msg)
-        doRefreshTable()
-      }else{
+        doRefreshTable();
+      } else {
         message.error('添加失败，请稍后重试');
-        doRefreshTable()
+        doRefreshTable();
       }
     }))
-
     setIsModalVisible(false);
   };
 
   return (
     <>
-    <div style={{marginBottom:15}}>
-    <Button type="primary" icon={<PlusOutlined />} onClick={showModal}>
-        新增
-      </Button>
-    </div>
       <CollectionCreateForm
+        doRefreshTable={doRefreshTable}
+        phoneItem={phoneItem}
+        setPhoneItem={setPhoneItem}
         visible={isModalVisible}
         onCreate={onCreate}
         onCancel={() => {

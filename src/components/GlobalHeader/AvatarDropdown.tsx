@@ -30,7 +30,6 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
           type: 'login/logout',
         });
       }
-
       return;
     }
 
@@ -41,7 +40,7 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
     const {
       currentUser = {
         avatar: '',
-        name: '',
+        user_name: '',
       },
       menu,
     } = this.props;
@@ -67,11 +66,11 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
         </Menu.Item>
       </Menu>
     );
-    return currentUser && currentUser.name ? (
+    return currentUser && currentUser.user_name ? (
       <HeaderDropdown overlay={menuHeaderDropdown}>
         <span className={`${styles.action} ${styles.account}`}>
           <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
-          <span className={`${styles.name} anticon`}>{currentUser.name}</span>
+          <span className={`${styles.name} anticon`}>{currentUser.user_name}</span>
         </span>
       </HeaderDropdown>
     ) : (

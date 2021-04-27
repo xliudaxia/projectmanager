@@ -2,7 +2,7 @@ import { stringify } from 'querystring';
 import type { Reducer, Effect } from 'umi';
 import { history } from 'umi';
 
-import { fakeAccountLogin } from '@/services/login';
+import { fakeAccountLogin, fakeAccountLogout } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { message } from 'antd';
@@ -41,6 +41,11 @@ const Model: LoginModelType = {
       });
       // Login successfully
       if (response.status === 'ok') {
+        localStorage.setItem('M-Token', response.token)
+        // yield put({
+        //   type: 'user/fetchCurrent',
+        //   payload: {},
+        // });
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         message.success('🎉 🎉 🎉  登录成功！');
@@ -61,10 +66,17 @@ const Model: LoginModelType = {
       }
     },
 
-    logout() {
+    *logout({ payload }, { call, put }) {
       const { redirect } = getPageQuery();
       // Note: There may be security issues, please note
       if (window.location.pathname !== '/user/login' && !redirect) {
+        const response = yield call(fakeAccountLogout, payload);
+        if (response.code === 0) {
+          localStorage.removeItem('M-Token');
+          message.success('退出登录成功')
+        } else {
+          message.error('退出登录失败，请稍后再试')
+        }
         history.replace({
           pathname: '/user/login',
           search: stringify({

@@ -45,14 +45,9 @@ export default (): React.ReactNode => {
         <ImageWrapper
           style={{ fontSize: '5px' }}
           src="https://os.alipayobjects.com/rmsportal/mgesTPFxodmIwpi.png"
-          desc="示意图"
+          desc="欢迎使用ToMoM门店管理系统"
         />
-        <Card title="富文本编辑器">
-          <ReactQuill value={content} onChange={handleContent} />
-          <Button style={{ marginTop: 16 }} onClick={prompt}>
-            Prompt
-          </Button>
-        </Card>
+        
         <Typography.Text strong>
           <FormattedMessage id="pages.welcome.advancedComponent" defaultMessage="高级表格" />{' '}
           <a
@@ -81,6 +76,12 @@ export default (): React.ReactNode => {
         </Typography.Text>
         <CodePreview>yarn add @ant-design/pro-layout</CodePreview>
       </Card>
+      {/* <Card title="富文本编辑器">
+          <ReactQuill value={content} onChange={handleContent} />
+          <Button style={{ marginTop: 16 }} onClick={prompt}>
+            Prompt
+          </Button>
+        </Card> */}
     </PageContainer>
   );
 };

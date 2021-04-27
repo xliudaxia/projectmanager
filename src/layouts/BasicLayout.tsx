@@ -59,7 +59,7 @@ const defaultFooterDom = (
     links={[
       {
         key: 'qingtengzhi',
-        title: '青藤枝创业团队',
+        title: 'ToMoM 门店管理系统',
         href: 'http://www.qingtengzhi.com',
         blankTarget: true,
       },
@@ -80,6 +80,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const menuDataRef = useRef<MenuDataItem[]>([]);
 
   useEffect(() => {
+    console.log('基础页fetchCurrent')
     if (dispatch) {
       dispatch({
         type: 'user/fetchCurrent',

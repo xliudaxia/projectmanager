@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Card, Col, Row, Tooltip, Modal, Input, Space } from 'antd';
 import { connect } from 'dva';
-import projbackground from '../../assets/images/background.jpg';
+import projbackground from '../../assets/images/projectitem.png';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ActionCenter from './components/ActionCenter';
 import { EditOutlined, DeleteOutlined, SettingOutlined } from '@ant-design/icons';
 import AddProjectModal from './components/AddProjectModal';
 import UpdateProjectModal from './components/UpdateProjectModal';
 import styles from './index.less';
+import autoHeight from '../Dashboard/components/Charts/autoHeight';
 
 const { Search } = Input;
 const { Meta } = Card;
@@ -104,11 +105,12 @@ const ProjectList: React.FC<{}> = (props) => {
             }}
           />
           <Row
-            style={{ display: 'flex', margin: '0 auto', width: '100%', marginTop: '15px' }}
-            gutter={16}
+            align="middle"
+            gutter={60}
           >
             {(projectlist || []).map((item) => (
-              <Col span={6}>
+              <Col span={4}>
+                <div style={{display:"flex",justifyContent:"center"}}>
                 <Card
                   hoverable
                   actions={[
@@ -120,7 +122,7 @@ const ProjectList: React.FC<{}> = (props) => {
                       onClick={() => {
                         editItem(item);
                       }}
-                      title="编辑"
+                      title="修改"
                     >
                       <EditOutlined key="edit" />
                     </Tooltip>,
@@ -135,11 +137,13 @@ const ProjectList: React.FC<{}> = (props) => {
                     </Tooltip>,
                   ]}
                   cover={<img alt="example" src={projbackground} />}
-                  style={{ width: 350, marginBottom: 15 }}
+                  style={{ width: 350, marginBottom: 50 }}
                   bordered={true}
                 >
                   <Meta title={item.projectname} description={item.projectdescription} />
                 </Card>
+                </div>
+               
               </Col>
             ))}
           </Row>

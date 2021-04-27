@@ -45,9 +45,15 @@
                 component: './TodoList',
               },
               {
+                path: '/phonebook',
+                name: 'phone-book',
+                icon: 'phone',
+                component: './PhoneBook',
+              },
+              {
                 path: '/projectlist',
                 name: 'project-list',
-                icon: 'dashboard',
+                icon: 'project',
                 routes: [
                   {
                     path: '/projectlist/main',
@@ -60,12 +66,6 @@
                     name: 'project-detail',
                     icon: 'smile',
                     component: './ProjectDetail',
-                  },
-                  {
-                    path: '/projectlist/phonebook',
-                    name: 'phone-book',
-                    icon: 'smile',
-                    component: './PhoneBook',
                   },
                 ],
               },

@@ -13,7 +13,7 @@ const proSettings: DefaultSettings = {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'ToMom',
+  title: 'ToMom System',
   pwa: false,
   iconfontUrl: '',
 };

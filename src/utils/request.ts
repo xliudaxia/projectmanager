@@ -40,6 +40,7 @@ const errorHandler = (error: { response: Response }): Response => {
   return response;
 };
 
+
 /** 配置request请求时的默认参数 */
 const request = extend({
   errorHandler, // 默认错误处理

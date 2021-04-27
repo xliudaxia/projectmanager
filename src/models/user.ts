@@ -3,6 +3,7 @@ import type { Effect, Reducer } from 'umi';
 import { queryCurrent, query as queryUsers } from '@/services/user';
 
 export type CurrentUser = {
+  user_id?: number;
   avatar?: string;
   name?: string;
   title?: string;
@@ -48,12 +49,16 @@ const UserModel: UserModelType = {
         payload: response,
       });
     },
-    *fetchCurrent(_, { call, put }) {
+    *fetchCurrent({ callback }, { call, put }) {
+      console.log('userModel获取token', localStorage.getItem('M-Token'))
       const response = yield call(queryCurrent);
       yield put({
         type: 'saveCurrentUser',
         payload: response,
       });
+      if (callback && typeof callback === 'function') {
+        callback();
+      }
     },
   },
 
