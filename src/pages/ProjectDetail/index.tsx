@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Avatar, Tag, Input, Descriptions, Card, Steps } from 'antd';
+import type {BasicLayoutProps} from '@ant-design/pro-layout';
 import { CrownOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons';
 import ProLayout, { PageContainer } from '@ant-design/pro-layout';
 import CommnetCenter from './components/CommentCenter'
@@ -8,28 +9,28 @@ const { Step } = Steps;
 const defaultProps = {
   routes: [
     {
-      path: '/welcome',
+      path: '/projectlist/projectdetail',
       name: '项目主页',
       icon: <CrownOutlined />,
       component: './Welcome',
     },
     {
-      path: '/admin/sub-page2',
+      path: '/projectlist/projectdetail/todo',
       name: '待办事项',
       icon: <UserOutlined />,
-      component: './Welcome',
+      component: './components/TodoList',
     },
     {
-      path: '/admin/sub-page3',
+      path: '/projectlist/projectdetail/comment',
       name: '文件仓库',
       icon: <SmileOutlined />,
-      component: '../Welcome',
+      component: './components/CommentCenter',
     },
   ],
 };
 
 
-export default () => {
+const ProjectDetail: React.FC<BasicLayoutProps>= (props) => {
   const [pathname, setPathname] = useState('/welcome');
   return (
     <>
@@ -72,7 +73,7 @@ export default () => {
             },
           }}
           style={{
-            paddingTop: 48,
+            paddingTop: 20,
           }}
           extra={[
             <Input.Search
@@ -86,20 +87,21 @@ export default () => {
             </Button>,
           ]}
         >
-          <div
+          { }
+          {/* <div
             style={{
               minHeight: '120vh',
             }}
           >
-            <Card bordered={false} style={{ background: '#fff' }}>
-              <Descriptions title="光大科技+信托存证项目" style={{ paddingTop: 10 }}>
-                <Descriptions.Item label="创建人">张宏源</Descriptions.Item>
+            <Card bordered={false} style={{ background: '#fff',marginTop:25,paddingTop: 30  }}>
+              <Descriptions title="光大科技+信托存证项目" >
+                <Descriptions.Item label="创建人">周传雄</Descriptions.Item>
                 <Descriptions.Item label="状态">进行中</Descriptions.Item>
                 <Descriptions.Item label="创建时间">2021-04-06</Descriptions.Item>
                 <Descriptions.Item label="项目介绍">这是一段用于演示的项目介绍，欢迎您的体验！</Descriptions.Item>
               </Descriptions>
             </Card>
-            <Card title="项目执行流程" style={{ marginBottom: 12, height: "100%", padding: "0 24px 0 24px" }} bordered={false} >
+            <Card title="执行阶段" style={{ marginBottom: 12,marginTop:25, height: "100%", padding: "0 24px 0 24px" }} bordered={false} >
               <Steps
                 direction='horizontal'
               >
@@ -113,9 +115,13 @@ export default () => {
             <Card title="评论" style={{ marginBottom: 12, height: "100%", padding: "24px" }} bordered={false} >
               <CommnetCenter />
             </Card>
-          </div>
+          </div> */}
+          {props.children}
         </PageContainer>
       </ProLayout>
     </>
   );
 };
+
+
+export default ProjectDetail
