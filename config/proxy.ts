@@ -12,6 +12,11 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },
+    '/tododata': {
+      'target': 'http://public-api-v1.aspirantzhang.com',
+      'changeOrigin': true,
+      'pathRewrite': { '^/tododata': '' },
+    },
   },
   // test: {
   //   '/api/': {
