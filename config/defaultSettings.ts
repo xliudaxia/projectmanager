@@ -13,7 +13,7 @@ const proSettings: DefaultSettings = {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'ToMom System',
+  title: 'QTunion System',
   pwa: false,
   iconfontUrl: '',
 };

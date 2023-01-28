@@ -5,7 +5,7 @@ import type { ConnectProps } from 'umi';
 import { Link, SelectLang, useIntl, connect, FormattedMessage } from 'umi';
 import React from 'react';
 import type { ConnectState } from '@/models/connect';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 import styles from './UserLayout.less';
 
 export type UserLayoutProps = {
@@ -49,19 +49,26 @@ const UserLayout: React.FC<UserLayoutProps> = (props) => {
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo} />
-                <span className={styles.title}>ToMoM门店管理系统</span>
+                <span className={styles.title}>QTunion个人管理</span>
               </Link>
             </div>
             <div className={styles.desc}>
               <FormattedMessage
                 id="pages.layouts.userLayout.title"
-                defaultMessage="Ant Design 是西湖区最具影响力的 Web 设计规范"
+                defaultMessage=""
               />
             </div>
           </div>
           {children}
         </div>
-        <DefaultFooter />
+        <DefaultFooter
+          links={[{
+              key: 'beian',
+              title: '京ICP备2021014331号-1',
+              href: 'https://beian.miit.gov.cn/',
+              blankTarget: true,
+            }]}
+          copyright="2023 青藤枝创业团队出品" />
       </div>
     </HelmetProvider>
   );

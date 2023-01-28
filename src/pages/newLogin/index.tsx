@@ -29,13 +29,11 @@ class Index extends Component {
     })
   }
   render() {
-    const { login1 } = this.props;
-    console.log('最新login1', login1)
     return (
       <div className={styles.main}>
         <Form onFinish={this.login} initialValues={{ remember: true }} >
           <Tabs>
-            <Tabs.TabPane tab="账户密码登录" key="account" >
+            <Tabs.TabPane tab="欢迎登录" key="account" >
               {
                 login1.status === "error" && (
                   <div>

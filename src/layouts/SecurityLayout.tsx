@@ -16,7 +16,7 @@ type SecurityLayoutState = {
 };
 
 class SecurityLayout extends React.Component<SecurityLayoutProps, SecurityLayoutState> {
-  
+
   state: SecurityLayoutState = {
     isReady: false,
   };
@@ -25,8 +25,7 @@ class SecurityLayout extends React.Component<SecurityLayoutProps, SecurityLayout
       isReady: true
     });
     const { dispatch } = this.props;
-    let mToken = localStorage.getItem("M-Token")
-    console.log('权限页fetchCurrent,M-Token=>',mToken)
+    const mToken = localStorage.getItem("M-Token")
     if (mToken && dispatch) {
       dispatch({
         type: 'user/fetchCurrent',

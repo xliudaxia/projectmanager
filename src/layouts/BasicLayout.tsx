@@ -17,7 +17,7 @@ import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import type { ConnectState } from '@/models/connect';
 import { getMatchMenu } from '@umijs/route-utils';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 
 const noMatch = (
   <Result
@@ -59,7 +59,7 @@ const defaultFooterDom = (
     links={[
       {
         key: 'qingtengzhi',
-        title: 'ToMoM 门店管理系统',
+        title: 'QTunion个人管理',
         href: 'http://www.qingtengzhi.com',
         blankTarget: true,
       },
@@ -80,7 +80,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const menuDataRef = useRef<MenuDataItem[]>([]);
 
   useEffect(() => {
-    console.log('基础页fetchCurrent')
     if (dispatch) {
       dispatch({
         type: 'user/fetchCurrent',
