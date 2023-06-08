@@ -1,8 +1,9 @@
 # build stage
-FROM node:16 as build-stage
+FROM node:14 as build-stage
 WORKDIR /app
 COPY . /app
-RUN npm install && npm run build
+RUN npm install --registry=https://registry.npmmirror.com
+RUN npm run build
 
 # production stage
 FROM nginx:latest as production-stage
