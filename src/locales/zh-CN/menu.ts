@@ -1,5 +1,6 @@
 export default {
   'menu.welcome': '欢迎',
+  'menu.bubble': '待办事项',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.admin': '管理页',
@@ -15,7 +16,7 @@ export default {
   'menu.exception.404': '404',
   'menu.exception.500': '500',
   'menu.form': '表单页',
-  'menu.project-list': '项目列表',
+  'menu.project-list': '项目管理',
   'menu.project-list.phone-book': '电话簿',
   'menu.project-list.project-detail': '项目详情',
   'menu.project-list.project-main': '项目列表',

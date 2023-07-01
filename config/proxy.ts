@@ -8,9 +8,9 @@
 export default {
   dev: {
     '/api/': {
-      target: 'http://localhost:9090',
+      target: 'http://140.143.170.94:9090',
       changeOrigin: true,
-      pathRewrite: { '^/api': '' },
+      pathRewrite: { '^/api': '' }, 
     },
     '/tododata': {
       'target': 'http://public-api-v1.aspirantzhang.com',
