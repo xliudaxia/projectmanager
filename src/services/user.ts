@@ -6,11 +6,7 @@ export async function query(): Promise<any> {
 
 export async function queryCurrent(): Promise<any> {
  
-  return request('/api/v1/currentUser',{
-    headers:{
-      'M-Token':`${localStorage.getItem('M-Token')}`
-    }
-  });
+  return request('/api/v1/currentUser');
 }
 
 export async function queryNotices(): Promise<any> {

@@ -40,14 +40,26 @@ const errorHandler = (error: { response: Response }): Response => {
   return response;
 };
 
-
 /** 配置request请求时的默认参数 */
 const request = extend({
   errorHandler, // 默认错误处理
   // credentials: 'include', // 默认请求是否带上cookie
-  headers: {
-    'M-Token': localStorage.getItem('M-Token')
-  },
+});
+
+request.use(async (ctx, next) => {
+  const { req } = ctx;
+  const { options } = req;
+
+  const token = localStorage.getItem('M-Token');
+
+  ctx.req.options = {
+    ...options,
+    headers: {
+      'M-Token': token ? token : '',
+    },
+  };
+
+  await next();
 });
 
 export default request;

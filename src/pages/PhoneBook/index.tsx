@@ -2,7 +2,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { useState, useRef } from 'react';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable, { TableDropdown } from '@ant-design/pro-table';
-import request from 'umi-request';
+import request from '@/utils/request';
 import { message } from 'antd';
 import AddModal from './components/AddModal'
 import UpdateModal from './components/UpdateModal'
